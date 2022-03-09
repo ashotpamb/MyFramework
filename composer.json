@@ -5,7 +5,8 @@
         "doctrine/orm": "^2.11",
         "symfony/yaml": "2.*",
         "symfony/cache": "^6.0",
-        "doctrine/annotations": "^1.13"
+        "doctrine/annotations": "^1.13",
+        "doctrine/migrations": "^3.4"
     },
     "autoload": {
         "psr-4": {
