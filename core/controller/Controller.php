@@ -1,16 +1,17 @@
 <?php
+
 namespace MF\controller;
 
-use MF\controller\View;
-
-class Controller extends View
+class Controller
 {
-    public function redirect($name)
+    public $twig;
+
+    public function __construct()
     {
-        $this->render($name);
-    }
-    public function a()
-    {
-        echo "AAA";
+        $loader = new \Twig\Loader\FilesystemLoader(ROOT . '/view/templates');
+        $this->twig = new \Twig\Environment($loader, [
+            'cache' => ROOT . '/cache/',
+            'auto_reload' => true
+        ]);
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
 use MF\Config\Router;
-use MF\Controller\Controller;
+use MF\controller\HomeController;
 
-//use MyFramework\Test;
-//
-//new Test();
-Router::get("home", [Controller::class,'a']);
+
+//Router::get("home", function() {
+//    return redirect("home");
+//});
+
+Router::get("home", [HomeController::class, 'index']);
 
 
