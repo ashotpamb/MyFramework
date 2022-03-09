@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "includes/app.twig" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-<p>
-
-
-    {{ name }}
-    {% for item in array %}
-        {{ item }}
-    {% else %}
-        No users have been found.
-    {% endfor %}
-
-</p>
-
-</body>
-
-</html>
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <ul>
+        <h1>User List</h1>
+        {% for item in array %}
+            <label for="">User Name</label>
+            <li>{{ item.getName() }}</li>
+            <label for="">User Email</label>
+            <li>{{ item.getEmail() }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

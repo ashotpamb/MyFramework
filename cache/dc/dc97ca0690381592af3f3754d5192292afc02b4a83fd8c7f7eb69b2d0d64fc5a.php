@@ -24,62 +24,75 @@ class __TwigTemplate_437fe9d227b622ea401dbc8032fc4f5443deb265cc4af13c1acf7ae86ab
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'title' => [$this, 'block_title'],
+            'head' => [$this, 'block_head'],
+            'content' => [$this, 'block_content'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "includes/app.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<!DOCTYPE html>
-<html lang=\"en\">
+        $this->parent = $this->loadTemplate("includes/app.twig", "home.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
 
-<head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>Document</title>
-</head>
+    // line 3
+    public function block_title($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        echo "Index";
+    }
 
-<body>
-
-<p>
-
-
-    ";
-        // line 15
-        echo twig_escape_filter($this->env, ($context["name"] ?? null), "html", null, true);
+    // line 4
+    public function block_head($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        // line 5
+        echo "    ";
+        $this->displayParentBlock("head", $context, $blocks);
         echo "
-    ";
-        // line 16
+";
+    }
+
+    // line 7
+    public function block_content($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        // line 8
+        echo "    <ul>
+        <h1>User List</h1>
+        ";
+        // line 10
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["array"] ?? null));
-        $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
-            // line 17
-            echo "        ";
-            echo twig_escape_filter($this->env, $context["item"], "html", null, true);
-            echo "
-    ";
-            $context['_iterated'] = true;
-        }
-        if (!$context['_iterated']) {
-            // line 19
-            echo "        No users have been found.
-    ";
+            // line 11
+            echo "            <label for=\"\">User Name</label>
+            <li>";
+            // line 12
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["item"], "getName", [], "method", false, false, false, 12), "html", null, true);
+            echo "</li>
+            <label for=\"\">User Email</label>
+            <li>";
+            // line 14
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["item"], "getEmail", [], "method", false, false, false, 14), "html", null, true);
+            echo "</li>
+        ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['item'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 21
-        echo "
-</p>
-
-</body>
-
-</html>";
+        // line 16
+        echo "    </ul>
+";
     }
 
     public function getTemplateName()
@@ -94,7 +107,7 @@ class __TwigTemplate_437fe9d227b622ea401dbc8032fc4f5443deb265cc4af13c1acf7ae86ab
 
     public function getDebugInfo()
     {
-        return array (  77 => 21,  70 => 19,  62 => 17,  57 => 16,  53 => 15,  37 => 1,);
+        return array (  94 => 16,  86 => 14,  81 => 12,  78 => 11,  74 => 10,  70 => 8,  66 => 7,  59 => 5,  55 => 4,  48 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
